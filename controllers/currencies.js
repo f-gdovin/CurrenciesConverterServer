@@ -104,7 +104,6 @@ const mergeCodeNames = (currencyCodes, codeNames) => {
 };
 
 const updateTopCurrencies = async (db, amount, to) => {
-    // TODO: amount in USD
     return new Promise((resolve, reject) => {
         // statements to upsert 'rank' table
         console.log(`Incrementing use count for currency code ${to}...`);
