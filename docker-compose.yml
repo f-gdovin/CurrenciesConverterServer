@@ -1,0 +1,27 @@
+version: '3.7'
+
+services:
+#  Backend
+  currencies-converter-server:
+    container_name: currencies-converter-server
+    build: ./
+    command: npm start
+    working_dir: /app
+    environment:
+      POSTGRES_URI: postgres://postgres:postgres@postgres:5432/CurrenciesConverter
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./:/app
+
+#  PostgreSQL
+  postgres:
+    container_name: postgres
+    build: ./database
+    environment:
+      POSTGRES_URI: postgres://postgres:postgres@localhost:5432/CurrenciesConverter
+      POSTGRES_PASS: postgres
+      POSTGRES_HOST: postgres
+      POSTGRES_DB: CurrenciesConverter
+    ports:
+      - "5432:5432"

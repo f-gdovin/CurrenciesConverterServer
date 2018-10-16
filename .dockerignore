@@ -1,0 +1,9 @@
+.dockerignore
+.idea
+*/.git
+.git
+.gitignore
+*/node_modules
+node_modules
+docker-compose.yml
+docker-compose.*.yml

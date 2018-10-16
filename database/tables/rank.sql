@@ -1,0 +1,8 @@
+BEGIN TRANSACTION;
+
+CREATE TABLE rank (
+  currency_code VARCHAR(3) UNIQUE NOT NULL,
+  total_times_used BIGINT NOT NULL
+);
+
+COMMIT;
