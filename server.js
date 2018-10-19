@@ -1,6 +1,8 @@
 require('dotenv').config();
 const express = require('express');
 
+const port = process.env.PORT || 3001;
+
 // middlewares
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
@@ -17,7 +19,7 @@ const db = knex({
     connection: process.env.POSTGRES_URI
 });
 
-const whitelist = ['http://localhost:3000'];
+const whitelist = [process.env.UI_URL];
 const corsOptions = {
     origin: function (origin, callback) {
         if (whitelist.indexOf(origin) !== -1) {
@@ -31,7 +33,7 @@ const corsOptions = {
 const app = express();
 
 app.use(morgan('combined'));
-// app.use(cors(corsOptions));
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
 // just a heartbeat test
@@ -44,6 +46,6 @@ app.post('/currencies/convert', currencies.convert(db));
 app.post('/stats/top', stats.getTopCurrencies(db));
 app.get('/stats/usage', stats.getUsage(db));
 
-app.listen(process.env.PORT || 3000, () => {
-    console.log(`CurrenciesConverter server running at ${process.env.PORT || 3000}`)
+app.listen(port, () => {
+    console.log(`CurrenciesConverter server running at ${port}`)
 });
