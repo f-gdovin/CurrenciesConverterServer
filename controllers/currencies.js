@@ -90,7 +90,7 @@ const getRateOrFail = (apiResponse, to) => {
 const mergeCodeNames = (currencyCodes, codeNames) => {
     return new Promise((resolve, reject) => {
         const codeNameMap = {};
-        Object.keys(currencyCodes).forEach(code => {
+        Object.keys(currencyCodes).sort().forEach(code => {
             const name = codeNames[code];
             if (name) {
                 codeNameMap[code] =  name;

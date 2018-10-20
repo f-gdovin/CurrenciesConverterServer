@@ -8,9 +8,10 @@ services:
     command: npm start
     working_dir: /app
     environment:
+      UI_URL: http://localhost:3000
       POSTGRES_URI: postgres://postgres:postgres@postgres:5432/CurrenciesConverter
     ports:
-      - "3000:3000"
+      - "3001:3001"
     volumes:
       - ./:/app
 
